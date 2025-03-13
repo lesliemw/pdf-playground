@@ -1,18 +1,18 @@
+import sys
 import PyPDF2
-# import sys
 
-# inputs = sys.argv[1:]
-
-
-# def pdf_combiner(pdf_list):
-#     '''combines all the pdfs in the list into a single pdf'''
-#     merger = PyPDF2.PdfFileMerger()
-#     for pdf in pdf_list:
-#         merger.append(pdf)
-#     merger.write("super.pdf")
+inputs = sys.argv[1:]
 
 
-# pdf_combiner(inputs)
+def pdf_combiner(pdf_list):
+    '''combines all the pdfs in the list into a single pdf'''
+    merger = PyPDF2.PdfFileMerger()
+    for pdf in pdf_list:
+        merger.append(pdf)
+    merger.write("super.pdf")
+
+
+pdf_combiner(inputs)
 
 
 template = PyPDF2.PdfFileReader(open("super.pdf", "rb"))
@@ -27,11 +27,11 @@ for i in range(template.getNumPages()):
         output.write(file)
 
 
-# with open("dummy.pdf", "rb") as file:
-#     reader = PyPDF2.PdfFileReader(file)
-#     page = reader.getPage(0)
-#     page.rotateCounterClockwise(90)
-#     with open("tilt.pdf", "wb") as file:
-#         writer = PyPDF2.PdfFileWriter()
-#         writer.addPage(page)
-#         writer.write(file)
+with open("dummy.pdf", "rb") as file:
+    reader = PyPDF2.PdfFileReader(file)
+    page = reader.getPage(0)
+    page.rotateCounterClockwise(90)
+    with open("tilt.pdf", "wb") as file:
+        writer = PyPDF2.PdfFileWriter()
+        writer.addPage(page)
+        writer.write(file)
